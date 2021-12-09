@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block content%}
+        <h1><b>Pokemon List</b></h1>
+        <a class="btn btn-primary" href="{% url 'addPokemon' %}">New Pokemon</a>
+
+        <div class="container">
+            {% for pokemon in poke%}
+            <p>
+            <a class="btn btn-primary" href="{% url 'showSinglePokemon' poke_id=pokemon.id %}">Edit</a>
+                {{pokemon.poke_name}}, {{pokemon.poke_type}}
+                <a class="btn btn-primary" href="{% url 'deletePokemon' poke_id=pokemon.id %}">Delete</a>
+            </p>
+            {% endfor %}
+        </div>
+         
+{%endblock%}

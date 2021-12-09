@@ -1,0 +1,51 @@
+<!--video 2 starting at 15:00
+start project from here
+-->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div>
+        <h2 class="text-left">Pokemon</h2>
+    </div>
+    <br>
+    <form name="form" method="post" action="{% url 'updatePoke' %}">
+    {% csrf_token %}
+    <input type="hidden" id="poke_id" name="poke_id" value="{{record.id}}">
+    <label for="first_name" > first name:</label>
+    <input type="text" name="first_name" id="first_name" value="{{record.first_name}}" autofocus>
+    <br><br>
+
+    <label for="last_name" > last name:</label>
+    <input type="text" name="last_name" id="last_name" value="{{record.last_name}}">
+    <br><br>
+
+    <label for="user_name" > user name:</label>
+    <input type="text" name="user_name" id="user_name" value="{{record.user_name}}">
+    <br><br>
+
+    <label for="password" > Password:</label>
+    <input type="text" name="password" id="password" value="{{record.password}}">
+    <br><br>
+
+    <label for="phone" > Phone:</label>
+    <input type="text" name="phone" id="phone" value="{{record.phone}}">
+    <br><br>
+
+    <label for="password" > Email:</label>
+    <input type="text" name="email" id="email" value="{{record.email}}">
+    <br><br>
+
+    <label > List of destinations:</label>
+    {%for destination in dest%}
+    <p>{{destination.title}}</p>
+    {%endfor%}
+
+    <button type="submit">Update</button>
+    </form>
+
+
+
+</div>
+
+{% endblock %}
