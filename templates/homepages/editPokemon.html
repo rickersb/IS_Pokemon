@@ -6,40 +6,41 @@ start project from here
 {% block content %}
 <div class="container">
     <div>
-        <h2 class="text-left">Pokemon</h2>
+        <h2 class="text-left">Edit Pokemon:</h2>
     </div>
     <br>
-    <form name="form" method="post" action="{% url 'updatePoke' %}">
+    <form name="form" method="post" action="{% url 'addPokemon' %}">
     {% csrf_token %}
-    <input type="hidden" id="poke_id" name="poke_id" value="{{record.id}}">
-    <label for="first_name" > first name:</label>
-    <input type="text" name="first_name" id="first_name" value="{{record.first_name}}" autofocus>
+    <input type="hidden" id="pokemon_id" name="pokemon_id" value="{{record.pokemon_id}}">
+    
+    <label for="name">Poke Name:</label>
+    <input type="text" name="name" id="name" value="{{record.name}}" autofocus>
     <br><br>
 
-    <label for="last_name" > last name:</label>
-    <input type="text" name="last_name" id="last_name" value="{{record.last_name}}">
+    <label for="image_path">Image path:</label>
+    <input type="text" name="image_path" id="image_path" value="{{record.image_path}}">
     <br><br>
 
-    <label for="user_name" > user name:</label>
-    <input type="text" name="user_name" id="user_name" value="{{record.user_name}}">
+    <label for="height">Poke Height:</label>
+    <input type="text" name="height" id="height" value="{{record.height}}">
     <br><br>
 
-    <label for="password" > Password:</label>
-    <input type="text" name="password" id="password" value="{{record.password}}">
+    <label for="weight">Poke Weight:</label>
+    <input type="text" name="weight" id="weight" value="{{record.weight}}">
     <br><br>
 
-    <label for="phone" > Phone:</label>
-    <input type="text" name="phone" id="phone" value="{{record.phone}}">
+    <label for="description">Poke Description:</label>
+    <input type="text" name="description" id="description" value="{{record.description}}">
     <br><br>
 
-    <label for="password" > Email:</label>
-    <input type="text" name="email" id="email" value="{{record.email}}">
+    <label for="region">Poke Region:</label>
+    <input type="text" name="region" id="region" value="{{record.region}}">
     <br><br>
 
-    <label > List of destinations:</label>
-    {%for destination in dest%}
-    <p>{{destination.title}}</p>
-    {%endfor%}
+    <label for="type">Poke Type:</label>
+    <input type="text" name="type" id="type" value="{{record.type}}">
+    <br><br>
+    
 
     <button type="submit">Update</button>
     </form>
