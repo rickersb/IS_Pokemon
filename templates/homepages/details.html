@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block content%}
+<div class="detailscontainer">
+    <center><img src="{% static pokemon.image_path %}" height="215px" width="215px"></center>
+    <h2>{{pokemon.name}}</h2>
+    <p>
+        {% for pokemontype in type %}
+            {{pokemontype.type}}
+        {% endfor %}
+    </p>
+    <p>Height: {{pokemon.height}}</p>
+    <p>Weight: {{pokemon.weight}}</p>
+    <p>Region: {{pokemon.region}}</p>
+    <p class="mydescription">{{pokemon.description}}</p>    
+</div>         
+{%endblock%}

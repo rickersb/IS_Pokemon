@@ -121,22 +121,25 @@ class DjangoSession(models.Model):
         managed = False
         db_table = 'django_session'
 
-
-class HomepagesPokemon(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    poke_name = models.CharField(max_length=30)
-    poke_type = models.CharField(max_length=30)
-
-    class Meta:
-        managed = False
-        db_table = 'homepages_pokemon'
-
-
-class HomepagesTrainerinfo(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    trainer_name = models.CharField(max_length=20)
-    hometown = models.CharField(max_length=20, blank=True, null=True)
+class PokemonInfo(models.Model):
+    pokemon_id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=50)
+    image_path = models.CharField(max_length=100)
+    height = models.CharField(max_length=50)
+    weight = models.FloatField()
+    description = models.CharField(max_length=300, blank=True, null=True)
+    region = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'homepages_trainerinfo'
+        db_table = 'pokemon_info'
+
+
+class PokemonType(models.Model):
+    pokemon = models.OneToOneField(PokemonInfo, models.DO_NOTHING, primary_key=True)
+    type = models.CharField(max_length=25)
+
+    class Meta:
+        managed = False
+        db_table = 'pokemon_type'
+        unique_together = (('pokemon', 'type'),)

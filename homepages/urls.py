@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import indexPageView, showPokemonPageView, showSinglePokemonPageView, updatePokemonPageView, deletePokemonPageView, addPokemonPageView
+from .views import detailsPageView, indexPageView, showPokemonPageView, showSinglePokemonPageView, updatePokemonPageView, deletePokemonPageView, addPokemonPageView
 
 urlpatterns = [
+    path("<int:pokemon>/", detailsPageView, name="details"),
     path("pokemon/", showPokemonPageView, name="pokemon"),
     path("showPokemon/<int:poke_id>/", showSinglePokemonPageView, name="showSinglePokemon"),
     path("updatePokemon/", updatePokemonPageView, name="updatePoke"),
