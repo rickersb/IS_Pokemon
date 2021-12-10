@@ -7,9 +7,9 @@
         <div class="container">
             {% for pokemon in poke%}
             <p>
-            <a class="btn btn-primary" href="{% url 'showSinglePokemon' pokemon_id=pokemon.id %}">Edit</a>
-                {{pokemon.name}}, {{pokemon.type}}
-                <a class="btn btn-primary" href="{% url 'deletePokemon' pokemon_id=pokemon.id %}">Delete</a>
+            <a class="btn btn-primary" href="{% url 'showSinglePokemon' pokemon_id=pokemon.pokemon_id %}">Edit</a>
+                Name: {{ pokemon.name }} <br> Description: {{ pokemon.description }} <br> Type: {{ pokemon.type }}
+                <a class="btn btn-primary" href="{% url 'deletePokemon' pokemon_id=pokemon.pokemon_id %}" onclick="return confirm('Are you sure?')">Delete</a>
             </p>
             {% endfor %}
         </div>

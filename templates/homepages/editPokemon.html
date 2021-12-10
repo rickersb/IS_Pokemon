@@ -9,7 +9,7 @@ start project from here
         <h2 class="text-left">Edit Pokemon:</h2>
     </div>
     <br>
-    <form name="form" method="post" action="{% url 'addPokemon' %}">
+    <form name="form" method="post" action="{% url 'updatePokemon' %}">
     {% csrf_token %}
     <input type="hidden" id="pokemon_id" name="pokemon_id" value="{{record.pokemon_id}}">
     
@@ -40,7 +40,6 @@ start project from here
     <label for="type">Poke Type:</label>
     <input type="text" name="type" id="type" value="{{record.type}}">
     <br><br>
-    
 
     <button type="submit">Update</button>
     </form>

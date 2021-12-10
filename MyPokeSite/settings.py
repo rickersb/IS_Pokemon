@@ -78,12 +78,12 @@ WSGI_APPLICATION = 'MyPokeSite.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-                'default': {
-                'ENGINE': 'django.db.backends.postgresql',
-                'NAME': 'Pokemon_Site',
-                'USER': 'postgres',
-                'PASSWORD': 'password',
-                'HOST': 'localhost'
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'pokemon',
+        'USER' : 'myadmin',
+        'PASSWORD' : 'ISgroup7',
+        'HOST' : 'is415server.postgres.database.azure.com',
                 }
             }  
 

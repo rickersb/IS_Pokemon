@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from homepages.models import Pokemon, Trainerinfo
+from homepages.models import Pokemon, PokemonType
 # Create your views here.
 
 def indexPageView(request):
@@ -13,29 +13,33 @@ def showPokemonPageView(request):
     }
     return render(request, 'homepages/showPokemon.html', context)
 
-def showSinglePokemonPageView(request, poke_id):
-    data = Pokemon.objects.get(id = poke_id)
+def showSinglePokemonPageView(request, pokemon_id):
+    data = Pokemon.objects.get(pokemon_id = pokemon_id)
 
     context = {
-        "record": data,
+        "record": data
     }
 
     return render(request, 'homepages/editPokemon.html', context)
 
 def updatePokemonPageView(request):
     if request.method == "POST":
-        poke_id = request.POST['poke_id']
+        pokemon_id = request.POST['pokemon_id']
 
-        pokemon = Pokemon.objects.get(id=poke_id)
+        pokemon = Pokemon.objects.get(pokemon_id=pokemon_id)
 
-        pokemon.first_name = request.POST['poke_name']
-        pokemon.last_name = request.POST['poke_type']
+        pokemon.name = request.POST['name']
+        pokemon.image_path = request.POST['image_path']
+        pokemon.height = request.POST['height']
+        pokemon.weight = request.POST['weight']
+        pokemon.description = request.POST['description']
+        pokemon.region = request.POST['region']
 
         pokemon.save()
     return showPokemonPageView(request)
 
-def deletePokemonPageView(request, poke_id):
-    data = Pokemon.objects.get(id = poke_id)
+def deletePokemonPageView(request, pokemon_id):
+    data = Pokemon.objects.get(pokemon_id = pokemon_id)
     data.delete()
     return showPokemonPageView(request)
 
@@ -44,8 +48,13 @@ def addPokemonPageView(request):
 
         pokemon = Pokemon()
 
-        pokemon.first_name = request.POST['poke_name']
-        pokemon.last_name = request.POST['poke_type']
+        pokemon.pokemon_id = request.POST['pokemon_id']
+        pokemon.name = request.POST['name']
+        pokemon.image_path = request.POST['image_path']
+        pokemon.height = request.POST['height']
+        pokemon.weight = request.POST['weight']
+        pokemon.description = request.POST['description']
+        pokemon.region = request.POST['region']
         
 
         pokemon.save()
