@@ -1,12 +1,18 @@
 {%extends 'base.html'%}
 {% load static %}
 {%block content%}
-        <!-- Masthead-->
-        <header class="masthead">
-            <div class="container">
-                <div class="masthead-subheading">Welcome to Pokemon Central</div>
-                <div class="masthead-heading text-uppercase">Gotta catch em all</div>
-            </div>
-        </header>
+    
+    <form class="myform" method="GET" action="{% url 'index' %}">
+        <input class="myinput" type="text" name="pokemon" id="pokemon" placeholder="Search"></input>
+        <button class="mybutton" type="submit">Search</button>
+    </form>
+    <div class="mycontainer">
+        {% for pokemon in pokemons %}
+            <a class="mya" href="{% url 'details' pokemon=pokemon.pokemon_id %}">
+                <img src="{% static pokemon.image_path %}">
+                <p>{{pokemon.name}}</p>
+            </a>
+        {% endfor %}
+    </div>
          
 {%endblock%}

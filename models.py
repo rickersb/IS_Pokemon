@@ -121,7 +121,10 @@ class DjangoSession(models.Model):
         managed = False
         db_table = 'django_session'
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fe2ad59 (Not that incredibly painful)
 class PokemonInfo(models.Model):
     pokemon_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)

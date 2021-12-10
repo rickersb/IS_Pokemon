@@ -1,13 +1,34 @@
+from django.db import connection
 from django.shortcuts import render
-from homepages.models import Pokemon, PokemonType
+from homepages.models import PokemonInfo, PokemonType, Pokemon
 # Create your views here.
 
 def indexPageView(request):
-    return render(request, 'homepages/index.html')
+    if request.method == "GET" and "pokemon" in request.GET:
+        pokemons = PokemonInfo.objects.filter(name__icontains=request.GET['pokemon'])
+    else:
+        pokemons = PokemonInfo.objects.all()
+    data = {
+        'pokemons': pokemons
+    }
+    return render(request, 'homepages/index.html', data)
 
+def detailsPageView(request, pokemon):
+    pokemon_obj = PokemonInfo.objects.get(pokemon_id=pokemon)
+    #type = PokemonType.objects.filter(pokemon__in=pokemon)
+    cursor = connection.cursor()
+    query = "SELECT type FROM pokemon_type WHERE pokemon_id=%s"
+    cursor.execute(query, [pokemon])
+    columns = [col[0] for col in cursor.description]
+    type = [dict(zip(columns, row)) for row in cursor.fetchall()]
+    data = {
+        'pokemon': pokemon_obj,
+        'type': type,
+    }
+    return render(request, 'homepages/details.html', data)
 
 def showPokemonPageView(request):
-    data = Pokemon.objects.all()
+    data = PokemonInfo.objects.all()
     context = {
         "poke" : data
     }
@@ -46,7 +67,7 @@ def deletePokemonPageView(request, pokemon_id):
 def addPokemonPageView(request):
     if request.method == "POST":
 
-        pokemon = Pokemon()
+        pokemon = PokemonInfo()
 
         pokemon.pokemon_id = request.POST['pokemon_id']
         pokemon.name = request.POST['name']
