@@ -1,23 +1,23 @@
 {%extends 'base.html'%}
 {% load static %}
 {%block content%}
-<br>
-<br>
-<br><br>
-<h1><b>Pokemon List</b></h1>
-<a class="btn btn-primary" href="{% url 'addPokemon' %}">New Pokemon</a>
-<br> <br> <br>
-<div class="container">
-    {% for pokemon in poke%}
-    <p>
-        <a class="btn btn-primary" href="{% url 'showSinglePokemon' pokemon_id=pokemon.pokemon_id %}">Edit</a>
+        <h1><b>Pokemon List</b></h1>
+        <br><br>
+        <center>
+        <a class="btn btn-primary" href="{% url 'addPokemon' %}" >New Pokemon</a>
+        </center>
         <br>
-        Name: {{ pokemon.name }} <br> Description: {{ pokemon.description }} <br> Type: {{ pokemon.type }}
-        <br> <img src='{% static pokemon.image_path %}' height='215' width='215'> <br>
-        <a class="btn btn-primary" href="{% url 'deletePokemon' pokemon_id=pokemon.pokemon_id %}" onclick="return confirm('Are you sure?')">Delete</a>
-    </p>
-    <br><br>
-    {% endfor %}
-</div>
+        <div class="container">
+            {% for pokemon in poke%}
+            <br>
+            <p>
+                <h6>{{ pokemon.name }} <img src="{% static pokemon.image_path %}"></h6>
+            </p>
+            <a class="btn btn-primary" href="{% url 'showSinglePokemon' pokemon_id=pokemon.pokemon_id %}">Edit</a>
+            <a class="btn btn-primary" href="{% url 'deletePokemon' pokemon_id=pokemon.pokemon_id %}" onclick="return confirm('Are you sure?')">Delete</a>
+            <br>
+            <hr>
+            {% endfor %}
+        </div>
          
 {%endblock%}
