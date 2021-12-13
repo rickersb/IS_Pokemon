@@ -13,9 +13,9 @@ start project from here
     <form name="form" method="post" action="{% url 'addPokemon' %}">
         {% csrf_token %}
 
-        <label for="pokemon_id">Pokemon ID:</label>
+        {% comment %} <label for="pokemon_id">Pokemon ID:</label>
         <input type="text" name="pokemon_id" id="pokemon_id" autofocus>
-        <br><br>
+        <br><br>  {% endcomment %}
         
         <label for="name">Poke Name:</label>
         <input type="text" name="name" id="name" autofocus>
