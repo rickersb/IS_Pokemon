@@ -108,6 +108,8 @@ def updatePokemonPageView(request):
     return showPokemonPageView(request)
 
 def deletePokemonPageView(request, pokemon_id):
+    otherData = PokemonType.objects.filter(pokemon=pokemon_id)
+    otherData.delete()
     data = PokemonInfo.objects.get(pokemon_id = pokemon_id)
     data.delete()
     return showPokemonPageView(request)
@@ -116,6 +118,7 @@ def addPokemonPageView(request):
     if request.method == "POST":
 
         pokemon = PokemonInfo()
+        pokemontype = PokemonType()
         cursor = connection.cursor()
         query = "SELECT max(pokemon_id) as max from pokemon_info"
         cursor.execute(query)
@@ -130,9 +133,16 @@ def addPokemonPageView(request):
         pokemon.weight = request.POST['weight']
         pokemon.description = request.POST['description']
         pokemon.region = request.POST['region']
-        
-
         pokemon.save()
+        cursor = connection.cursor()
+        query = "INSERT INTO pokemon_type(pokemon_id, type) VALUES(%s, %s)"
+        cursor.execute(query, (pokemon_id, request.POST['type1']))
+        
+        if request.POST['type2'] != 'None':
+            cursor = connection.cursor()
+            query = "INSERT INTO pokemon_type(pokemon_id, type) VALUES(%s, %s)"
+            cursor.execute(query, (pokemon_id, request.POST['type2']))
+        
         return showPokemonPageView(request)
     else:
         return render(request, 'homepages/addPokemon.html')
