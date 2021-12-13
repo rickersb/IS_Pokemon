@@ -121,14 +121,11 @@ class DjangoSession(models.Model):
         managed = False
         db_table = 'django_session'
 
-<<<<<<< HEAD
 
-=======
->>>>>>> fe2ad59 (Not that incredibly painful)
 class PokemonInfo(models.Model):
     pokemon_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
-    image_path = models.CharField(max_length=100)
+    image_path = models.CharField(upload_to='static/img/', max_length=100)
     height = models.CharField(max_length=50)
     weight = models.FloatField()
     description = models.CharField(max_length=300, blank=True, null=True)
