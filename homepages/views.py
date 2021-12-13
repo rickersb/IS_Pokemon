@@ -68,10 +68,16 @@ def addPokemonPageView(request):
     if request.method == "POST":
 
         pokemon = PokemonInfo()
-
-        pokemon.pokemon_id = request.POST['pokemon_id']
+        cursor = connection.cursor()
+        query = "SELECT max(pokemon_id) as max from pokemon_info"
+        cursor.execute(query)
+        columns = [col[0] for col in cursor.description]
+        temp = [dict(zip(columns, row)) for row in cursor.fetchall()]
+        pokemon_id = temp[0]['max'] +1
+        
+        pokemon.pokemon_id = pokemon_id
         pokemon.name = request.POST['name']
-        pokemon.image_path = request.POST['image_path']
+        pokemon.image_path = 'img/' + request.POST['image_path']
         pokemon.height = request.POST['height']
         pokemon.weight = request.POST['weight']
         pokemon.description = request.POST['description']
