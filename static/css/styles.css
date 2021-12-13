@@ -90,6 +90,7 @@ h6 {
 p {
     margin-top: 0;
     margin-bottom: 1rem;
+    width: 500px;
 }
 
 abbr[title],
@@ -10681,4 +10682,22 @@ section#contact form#contactForm :-ms-input-placeholder {
 .mya:hover {
     background-color: rgb(180, 180, 180);
     border-radius: 9px;
+}
+
+.detailscontainer {
+    display: flex;
+    flex-direction: column;
+    margin: 5%;
+    margin-top: 12em;
+    text-align: center;
+    background-color: rgba(254, 54, 54, 0.5);
+    border-radius: 12px;
+    color: black;
+    padding-bottom: 30px;
+}
+
+.mydescription {
+    margin-left: 30%;
+    max-width: 40%;
+    display: flex;
 }

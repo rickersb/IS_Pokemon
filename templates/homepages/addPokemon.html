@@ -5,8 +5,9 @@ start project from here
 {% load static %}
 {% block content %}
 <div class="container">
-    <div>
-        <h2 class="text-left">Add Pokemon</h2>
+    <br>
+    <div style='margin-top=100px;'>
+        <h2 style='margin-top=20px;' class="text-left">Add Pokemon</h2>
     </div>
     <br>
     <form name="form" method="post" action="{% url 'addPokemon' %}">
@@ -20,9 +21,13 @@ start project from here
         <input type="text" name="name" id="name" autofocus>
         <br><br>
 
-        <label for="image_path">Image path:</label>
-        <input type="text" name="image_path" id="image_path" >
+        <label for="image">Image path:</label>
+        <input type="file" name="image_path" id="image_path" >
         <br><br>
+
+        {% comment %} <label for="image_path">Image path:</label>
+        <input type="text" name="image_path" id="image_path" >
+        <br><br> {% endcomment %}
 
         <label for="height">Poke Height:</label>
         <input type="text" name="height" id="height" >
