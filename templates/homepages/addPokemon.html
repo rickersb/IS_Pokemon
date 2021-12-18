@@ -12,22 +12,14 @@ start project from here
     <br>
     <form name="form" method="post" action="{% url 'addPokemon' %}">
         {% csrf_token %}
-
-        {% comment %} <label for="pokemon_id">Pokemon ID:</label>
-        <input type="text" name="pokemon_id" id="pokemon_id" autofocus>
-        <br><br>  {% endcomment %}
         
         <label for="name">Poke Name:</label>
         <input type="text" name="name" id="name" autofocus>
         <br><br>
 
-        <label for="image">Image path:</label>
+        <label for="image">Image:</label>
         <input type="file" name="image_path" id="image_path" >
         <br><br>
-
-        {% comment %} <label for="image_path">Image path:</label>
-        <input type="text" name="image_path" id="image_path" >
-        <br><br> {% endcomment %}
 
         <label for="height">Poke Height:</label>
         <input type="text" name="height" id="height" >
@@ -45,8 +37,12 @@ start project from here
         <input type="text" name="region" id="region" >
         <br><br>
 
-        <label for="type">Poke Type:</label>
-        <input type="text" name="type" id="type">
+        <label for="type1">Poke Type 1:</label>
+        <input type="text" name="type1" id="type1" value="None">
+        <br><br>
+
+        <label for="type2">Poke Type 2:</label>
+        <input type="text" name="type2" id="type2" value="None">
         <br><br>
 
         
